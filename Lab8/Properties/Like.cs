@@ -16,11 +16,29 @@ namespace Lab8.Properties
         public string Get(string Name) {
             Context context = new Context();
 
-            IQueryable<User> users = from user in context.User where user.Name == Name select user;
+           User users = (from user in context.User where user.Name == Name select user).SingleOrDefault();
             string count = "";
-            foreach (User user2 in users)
-                count = user2.Likes.ToString();
-            return count;
+            string count_before = "";
+            if (users != null)
+            {
+                count_before = users.Likes.ToString();
+                users.Likes++;
+                context.SaveChanges();
+                count = $"Likes before:{count_before} You liked! Num likes now:{users.Likes}";
+                return count;
+            }
+            else
+            {
+                context.User.Add(new User()
+                {
+                    Name = Name,
+                    Likes = 1
+                });
+                context.SaveChanges();
+                count = $"It is a new user! You liked! Num likes now:1";
+                return count;
+            }
+
         }
 
     }

@@ -13,34 +13,29 @@ namespace Lab8
     {
         public static void Main(string[] args)
         {
-            
             Context context = new Context();
             context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
             context.User.Add(new User()
             {
-              //  Id = 1,
                 Name = "Liza",
                 Likes = 1733
 
             });
             context.User.Add(new User()
             {
-               // Id = 2,
                 Name = "Moxe",
                 Likes = 1234
 
             });
             context.User.Add(new User()
             {
-               // Id = 3,
                 Name = "Ilya",
                 Likes = 120
 
             });
             context.User.Add(new User()
             {
-                //Id = 4,
                 Name = "Sveta",
                 Likes = 2192
 
